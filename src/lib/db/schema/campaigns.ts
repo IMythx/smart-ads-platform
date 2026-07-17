@@ -20,7 +20,7 @@ export const campaigns = pgTable("campaigns", {
   startDate: date("start_date").notNull(),
   endDate: date("end_date"),
   dailyBudget: decimal("daily_budget", { precision: 12, scale: 2 }),
-  advertiserId: uuid("advertiser_id")
+  advertiserId: text("advertiser_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").notNull().defaultNow(),

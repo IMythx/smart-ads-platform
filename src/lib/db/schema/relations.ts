@@ -1,15 +1,32 @@
 import { relations } from "drizzle-orm";
 import { users } from "./users";
+import { accounts, sessions } from "./auth-adapter";
 import { campaigns, adGroups, creatives } from "./campaigns";
 import { impressions, clicks, conversions } from "./analytics";
 import { products } from "./catalog";
 import { transactions, invoices } from "./billing";
 
 export const usersRelations = relations(users, ({ many }) => ({
+  accounts: many(accounts),
+  sessions: many(sessions),
   campaigns: many(campaigns),
   products: many(products),
   transactions: many(transactions),
   invoices: many(invoices),
+}));
+
+export const accountsRelations = relations(accounts, ({ one }) => ({
+  user: one(users, {
+    fields: [accounts.userId],
+    references: [users.id],
+  }),
+}));
+
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(users, {
+    fields: [sessions.userId],
+    references: [users.id],
+  }),
 }));
 
 export const campaignsRelations = relations(campaigns, ({ one, many }) => ({

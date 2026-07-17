@@ -10,7 +10,7 @@ import { users } from "./users";
 
 export const products = pgTable("products", {
   id: uuid("id").defaultRandom().primaryKey(),
-  advertiserId: uuid("advertiser_id")
+  advertiserId: text("advertiser_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   name: varchar("name", { length: 255 }).notNull(),
