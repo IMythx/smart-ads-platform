@@ -1,2 +1,6 @@
-// Database schema - all tables exported from here
-// Schemas will be added as feature modules are built
+export * from "./users";
+export * from "./campaigns";
+export * from "./catalog";
+export * from "./analytics";
+export * from "./billing";
+export * from "./relations";
