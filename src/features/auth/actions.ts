@@ -1,6 +1,7 @@
 "use server";
 
 import { hash } from "bcryptjs";
+import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { generateId } from "@/lib/utils/id";
@@ -18,4 +19,6 @@ export async function registerUser(formData: FormData) {
     name,
     passwordHash,
   });
+
+  redirect("/auth/login");
 }
