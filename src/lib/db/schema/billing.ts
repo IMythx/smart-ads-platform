@@ -11,7 +11,7 @@ import { users } from "./users";
 
 export const transactions = pgTable("transactions", {
   id: uuid("id").defaultRandom().primaryKey(),
-  advertiserId: uuid("advertiser_id")
+  advertiserId: text("advertiser_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   amount: decimal("amount", { precision: 12, scale: 2 }).notNull(),
@@ -25,7 +25,7 @@ export const transactions = pgTable("transactions", {
 
 export const invoices = pgTable("invoices", {
   id: uuid("id").defaultRandom().primaryKey(),
-  advertiserId: uuid("advertiser_id")
+  advertiserId: text("advertiser_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   amount: decimal("amount", { precision: 12, scale: 2 }).notNull(),
